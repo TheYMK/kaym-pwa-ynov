@@ -7,13 +7,10 @@ const routes = [
     ]
   },
   {
-    path: '/tuto',
+    path: '/lists',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: 'v2', component: () => import('pages/TutoPage.vue') },
-      {
-        path: 'v3', component: () => import('pages/TutoPageVue3.vue')
-      }
+      { path: ':id', component: () => import('pages/ListDetailPage.vue') },
     ]
   },
   {
