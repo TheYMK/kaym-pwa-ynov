@@ -1,33 +1,36 @@
-import { defineStore } from 'pinia'
-import { getAllLists, createList } from 'src/services/lists'
+// import { defineStore } from 'pinia'
+// import { getAllLists, createList } from 'src/services/lists'
+// import { ref, computed } from "vue";
 
-export const useLists = defineStore('todos', {
-  state: () => ({
-    lists: [],
-  }),
-  getters: {
-    async getAllLists(state) {
-      try {
-        const res = await getAllLists();
-        return res.data;
-      } catch (err) {
-        console.log('Failed to retrieve lists: ', err)
-        return []
-      }
-    },
-  },
-  actions: {
-    // any amount of arguments, return a promise or not
-    async addList(title) {
-      try {
-        const { data } = await createList(title)
-        if (data) {
-          this.lists.push(data)
-        }
-      } catch (err) {
-        console.log('Failed to retrieve lists: ', err)
-      }
+// export const useListsStore = defineStore('lists', () => {
+//   const lists = ref([])
+//   const getLists = computed(() => lists.value)
 
-    },
-  },
-})
+//   async function getAllLists() {
+//     try {
+//       const res = await getAllLists();
+//       lists = res.data.map((list) => {
+//         return {
+//           title: list.title,
+//           link: `/lists?id=${list._id}`,
+//         };
+//       });
+
+//       return lists
+//     } catch (err) {
+//       console.log('Failed to retrieve lists: ', err)
+//       return []
+//     }
+//   }
+//   async function addList() {
+//     try {
+//       const { data } = await createList(title)
+//       await getAllLists()
+//     } catch (err) {
+//       console.log('Failed to retrieve lists: ', err)
+//     }
+//   }
+
+//   return { lists, getLists, getAllLists, addList }
+// })
+

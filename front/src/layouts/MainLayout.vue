@@ -84,7 +84,7 @@ const listTitle = ref("");
   essentialLinks.value = data.map((list) => {
     return {
       title: list.title,
-      link: `/lists/${list._id}`,
+      link: `/lists?id=${list._id}`,
     };
   });
 })();

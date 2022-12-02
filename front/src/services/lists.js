@@ -11,3 +11,11 @@ export function createList(title) {
 export function getSingleList(id) {
   return api.get(`/lists/${id}`)
 }
+
+export function updateList(id, data) {
+  return api.put(`/lists/${id}`, data)
+}
+
+export function deleteList(id) {
+  return api.delete(`/lists/${id}`)
+}

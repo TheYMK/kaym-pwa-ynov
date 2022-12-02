@@ -19,6 +19,7 @@
       <h1 class="welcome-message">Bonjour, Kassai 👻</h1>
     </q-item>
     <q-item tag="div" class="flex column">
+      <p v-if="lists.length <= 0">⚠️ Oops! Vous n'avez pas encore de liste</p>
       <ListItem v-for="list in lists" :key="list.title" :list="list" />
     </q-item>
   </q-page>
@@ -44,7 +45,8 @@ const lists = ref(props.lists);
   lists.value = data.map((list) => {
     return {
       title: list.title,
-      link: `/lists/${list._id}`,
+      link: `/lists?id=${list._id}`,
+      id: list._id,
     };
   });
 })();
