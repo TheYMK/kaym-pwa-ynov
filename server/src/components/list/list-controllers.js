@@ -1,4 +1,5 @@
 import List from '#components/list/list-model.js'
+import Task from '#components/task/task-model.js'
 import Joi from 'joi'
 
 export async function index (ctx) {
@@ -14,7 +15,8 @@ export async function id (ctx) {
   try {
     if(ctx.params.id.length <= 0) return ctx.notFound({ message: 'Id missing, list ressource not found' })
     const list = await List.findById(ctx.params.id)
-    ctx.ok(list)
+    const tasks = await Task.find({list: ctx.params.id})
+    ctx.ok({list, tasks})
   } catch (e) {
     ctx.badRequest({ message: e.message })
   }
@@ -53,6 +55,7 @@ export async function update (ctx) {
 export async function del (ctx) {
   try {
     await List.findByIdAndDelete(ctx.params.id)
+    await Task.deleteMany({list: ctx.params.id})
     ctx.ok()
   } catch (error) {
     ctx.badRequest({ message: e.message })
